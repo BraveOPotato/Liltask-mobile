@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { View, StyleSheet } from 'react-native';
 import {
     Appbar, TextInput, IconButton, Text, ProgressBar,
-    Portal, Dialog, Button, useTheme
+    Portal, Dialog, Button, useTheme, Surface
 } from 'react-native-paper';
 import DraggableFlatList, {
     RenderItemParams,
@@ -121,6 +121,7 @@ export function TodoScreen({ navigation }: any) {
     ), [c, onToggle, app]);
 
     return (
+    <>
         <View style={[styles.root, { backgroundColor: c.background }]}>
             {/* ─── Header ─── */}
             <Appbar.Header style={{ backgroundColor: c.surface }} elevated>
@@ -216,8 +217,6 @@ export function TodoScreen({ navigation }: any) {
                     />
                 </View>
 
-                {/* Bottom nav (handles its own safe-area insets) */}
-                <BottomNav active="lists" navigation={navigation} />
             </View>
 
             {/* ─── Edit dialog ─── */}
@@ -267,6 +266,9 @@ export function TodoScreen({ navigation }: any) {
             <ThemesModal visible={showThemes} onDismiss={() => setShowThemes(false)} />
             <Celebration visible={showCelebration} />
         </View>
+        {/* Bottom nav (handles its own safe-area insets) */}
+        <BottomNav active="lists" navigation={navigation} />
+    </>
     );
 }
 
